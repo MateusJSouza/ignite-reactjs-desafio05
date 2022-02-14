@@ -1,9 +1,14 @@
-import { GetStaticProps } from 'next';
+import Head from 'next/Head';
+import Link from 'next/link';
 
+import { GetStaticProps } from 'next';
+import { FiCalendar, FiUser } from 'react-icons/fi';
+import { format } from 'date-fns';
 import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
+import Header from '../components/Header';
 
 interface Post {
   uid?: string;
@@ -24,9 +29,25 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-// export default function Home() {
-//   // TODO
-// }
+export default function Home() {
+  return (
+    <>
+      <Head>
+        <title>Home | spacetraveling</title>
+      </Head>
+
+      <main className={commonStyles.container}>
+        <Header />
+
+        <div>
+          <Link href="#">
+            <a>Como utilizar Hooks</a>
+          </Link>
+        </div>
+      </main>
+    </>
+  );
+}
 
 // export const getStaticProps = async () => {
 //   // const prismic = getPrismicClient();
