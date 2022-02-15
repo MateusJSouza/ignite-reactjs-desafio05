@@ -1,3 +1,5 @@
+/* eslint-disable no-return-assign */
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/no-danger */
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { RichText } from 'prismic-dom';
@@ -5,6 +7,8 @@ import { FiCalendar, FiClock, FiUser } from 'react-icons/fi';
 import Prismic from '@prismicio/client';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
 import Header from '../../components/Header';
 
 import { getPrismicClient } from '../../services/prismic';
@@ -33,9 +37,36 @@ interface PostProps {
   post: Post;
 }
 
-export default function Post({ post }: PostProps) {
+export default function Post({ post }: PostProps): JSX.Element {
+  const totalWords = post.data.content.reduce((total, contentItem) => {
+    total += contentItem.heading.split('').length;
+
+    const words = contentItem.body.map(item => item.text.split(' ').length);
+    words.map(word => (total += word));
+    return total;
+  }, 0);
+
+  const readTime = Math.ceil(totalWords / 200);
+
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Carregando...</h1>;
+  }
+
+  const formattedDate = format(
+    new Date(post.first_publication_date),
+    'dd MMM yyyy',
+    {
+      locale: ptBR,
+    }
+  );
+
   return (
     <>
+      <Head>
+        <title>{`${post.data.title} | spacetraveling`}</title>
+      </Head>
       <Header />
       <img src="/banner.png" alt="imagem" className={styles.banner} />
       <main className={commonStyles.container}>
@@ -45,14 +76,15 @@ export default function Post({ post }: PostProps) {
             <ul>
               <li>
                 <FiCalendar />
-                {post.first_publication_date}
+                {formattedDate}
               </li>
               <li>
                 <FiUser />
                 {post.data.author}
               </li>
               <li>
-                <FiClock />5 min
+                <FiClock />
+                {`${readTime} min`}
               </li>
             </ul>
           </div>
@@ -102,13 +134,7 @@ export const getStaticProps: GetStaticProps = async context => {
 
   const post = {
     uid: response.uid,
-    first_publication_date: format(
-      new Date(response.first_publication_date),
-      'dd MMM yyyy',
-      {
-        locale: ptBR,
-      }
-    ),
+    first_publication_date: response.first_publication_date,
     data: {
       title: response.data.title,
       subtitle: response.data.subtitle,
