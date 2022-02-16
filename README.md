@@ -47,7 +47,7 @@ $ cd space-traveling
 
 # Crie um arquivo .env.local e coloque as variaveis
 # de ambiente baseado no arquivo .env.example que
-# se encontra na pasta moveit
+# se encontra na pasta raiz do projeto
 
 # Instale as dependências
 $ yarn
@@ -56,15 +56,6 @@ $ yarn
 $ yarn start
 
 ```
-
-&nbsp;
-
-### 🔗 Link para o projeto online
-
-
-[Space Traveling](https://vercel.com/mateusjsouza/ignite-reactjs-desafio05)
-
-&nbsp;
 
 ## 📝 Licença
 
