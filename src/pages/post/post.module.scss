@@ -43,11 +43,12 @@
   }
 
   > ul {
+    margin-bottom: 4rem;
+
     padding: 0;
     margin: 0;
     list-style: none;
     display: flex;
-    margin-bottom: 4rem;
 
     & li {
       margin: 0;
@@ -61,5 +62,13 @@
         margin-left: 1.625rem;
       }
     }
+  }
+
+  > span {
+    margin-top: 1rem;
+    display: block;
+    font-style: italic;
+    font-size: 0.875rem;
+    color: var(--info);
   }
 }

@@ -90,7 +90,7 @@ export default function Post({
   if (isPostEdited) {
     editionDate = format(
       new Date(post.last_publication_date),
-      "'* editado em' dd MMM yyyy', às' H':'m",
+      "'* editado em' dd MM yyyy', às' H':'m",
       {
         locale: ptBR,
       }
@@ -119,7 +119,7 @@ export default function Post({
                 {`${readTime} min`}
               </li>
             </ul>
-            <span>{isPostEdited && editionDate}</span>
+            {isPostEdited && <span>{editionDate}</span>}
           </div>
 
           {post.data.content.map(content => {
@@ -216,7 +216,7 @@ export const getStaticProps: GetStaticProps = async ({
     {
       pageSize: 1,
       after: response.id,
-      orderings: '[document.last_publication_date]',
+      orderings: '[document.last_publication_date desc]',
     }
   );
 

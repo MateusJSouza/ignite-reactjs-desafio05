@@ -11,7 +11,7 @@ export default class Comments extends Component {
     script.setAttribute('async', 'true');
     script.setAttribute('repo', '[MateusJSouza/ignite-reactjs-desafio05]');
     script.setAttribute('issue-term', 'pathname');
-    script.setAttribute('theme', 'dark-blue');
+    script.setAttribute('theme', 'github-dark');
     anchor.appendChild(script);
   }
 
