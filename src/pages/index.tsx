@@ -3,11 +3,9 @@ import Link from 'next/link';
 import { ReactElement, useState } from 'react';
 import Prismic from '@prismicio/client';
 
-// import { GetStaticPaths } from 'next';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-// import { getPrismicClient } from '../services/prismic';
 
 import { GetStaticProps } from 'next';
 import commonStyles from '../styles/common.module.scss';
@@ -115,6 +113,7 @@ export default function Home({
               </a>
             </Link>
           ))}
+
           {nextPage && (
             <button type="button" onClick={handleNextPage}>
               Carregar mais posts

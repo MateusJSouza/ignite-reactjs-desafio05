@@ -8,7 +8,6 @@ import Prismic from '@prismicio/client';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
 
@@ -91,7 +90,7 @@ export default function Post({
   if (isPostEdited) {
     editionDate = format(
       new Date(post.last_publication_date),
-      "'* editado em' dd MMM yyyy', às ' H':'m",
+      "'* editado em' dd MMM yyyy', às' H':'m",
       {
         locale: ptBR,
       }
@@ -100,11 +99,8 @@ export default function Post({
 
   return (
     <>
-      <Head>
-        <title>{`${post.data.title} | spacetraveling`}</title>
-      </Head>
       <Header />
-      <img src="/banner.png" alt="imagem" className={styles.banner} />
+      <img src={post.data.banner.url} alt="imagem" className={styles.banner} />
       <main className={commonStyles.container}>
         <div className={styles.post}>
           <div className={styles.postTop}>
@@ -125,6 +121,7 @@ export default function Post({
             </ul>
             <span>{isPostEdited && editionDate}</span>
           </div>
+
           {post.data.content.map(content => {
             return (
               <article key={content.heading}>
@@ -202,7 +199,7 @@ export const getStaticProps: GetStaticProps = async ({
   const prismic = getPrismicClient();
   const { slug } = params;
   const response = await prismic.getByUID('posts', String(slug), {
-    re: previewData?.ref || null,
+    ref: previewData?.ref || null,
   });
 
   const prevPost = await prismic.query(
