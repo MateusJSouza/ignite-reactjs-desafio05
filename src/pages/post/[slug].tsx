@@ -90,7 +90,7 @@ export default function Post({
   if (isPostEdited) {
     editionDate = format(
       new Date(post.last_publication_date),
-      "'* editado em' dd MM yyyy', às' H':'m",
+      "'* editado em' dd MMM yyyy', às' H':'m",
       {
         locale: ptBR,
       }
