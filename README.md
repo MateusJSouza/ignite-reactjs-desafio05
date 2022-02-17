@@ -57,6 +57,15 @@ $ yarn start
 
 ```
 
+&nbsp;
+
+### 🔗 Link para o projeto online
+
+
+[Space Traveling](https://spacetraveling-mateusj.vercel.app/)
+
+&nbsp;
+
 ## 📝 Licença
 
 Este projeto está licenciado sob a Licença MIT. Veja o arquivo de [LICENÇA](https://github.com/MateusJSouza/ignite-reactjs-desafio05/blob/master/LICENSE) para detalhes.
