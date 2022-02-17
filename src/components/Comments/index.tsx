@@ -9,7 +9,7 @@ export default class Comments extends Component {
     script.setAttribute('src', 'https://utteranc.es/client.js');
     script.setAttribute('crossorigin', 'anonymous');
     script.setAttribute('async', 'true');
-    script.setAttribute('repo', '[MateusJSouza/ignite-reactjs-desafio05]');
+    script.setAttribute('repo', 'MateusJSouza/ignite-reactjs-desafio05');
     script.setAttribute('issue-term', 'pathname');
     script.setAttribute('theme', 'github-dark');
     anchor.appendChild(script);
@@ -17,9 +17,10 @@ export default class Comments extends Component {
 
   render() {
     return (
-      <div id="inject-comments-for-uterances">
+      <div
+        id="inject-comments-for-uterances"
         style={{ marginBottom: '4rem' }}
-      </div>
+      />
     );
   }
 }
